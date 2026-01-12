@@ -1,0 +1,20 @@
+{
+  "name": "SRMVEC Internal Mark Calculator",
+  "short_name": "Internal Marks",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#667eea",
+  "icons": [
+    {
+      "src": "Srm_vec_logo.jpg",
+      "sizes": "192x192",
+      "type": "image/jpg"
+    },
+    {
+      "src": "Srm_vec_logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpg"
+    }
+  ]
+}

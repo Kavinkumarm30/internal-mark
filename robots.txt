@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://kavinkumarm30.github.io/internal-mark/sitemap.xml

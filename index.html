@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Primary Meta Tags -->
+    <title>SRMVEC Internal Mark Calculator | Accurate CAT & Assignment Scoring</title>
+    <meta name="title" content="SRMVEC Internal Mark Calculator | Accurate CAT & Assignment Scoring" />
+    <meta name="description"
+        content="Calculate your SRMVEC internal marks accurately. key in your CAT-1, CAT-2, and assignment marks to get your total internal score out of 40. Perfect for students and staff." />
+    <meta name="keywords"
+        content="SRMVEC, Internal Mark Calculator, CAT Marks, Assignment Marks, Engineering Grade Calculator, College Mark Calculator, Pondicherry University Internal Marks" />
+    <meta name="author" content="Kavin" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://kavinkumarm30.github.io/internal-mark/" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpg" href="Srm_vec_logo.jpg" />
+    <link rel="manifest" href="manifest.json" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://kavinkumarm30.github.io/internal-mark/" />
+    <meta property="og:title" content="SRMVEC Internal Mark Calculator | Accurate CAT & Assignment Scoring" />
+    <meta property="og:description"
+        content="Calculate your SRMVEC internal marks accurately. key in your CAT-1, CAT-2, and assignment marks to get your total internal score out of 40." />
+    <meta property="og:image" content="https://kavinkumarm30.github.io/internal-mark/Srm_vec_logo.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://kavinkumarm30.github.io/internal-mark/" />
+    <meta property="twitter:title" content="SRMVEC Internal Mark Calculator | Accurate CAT & Assignment Scoring" />
+    <meta property="twitter:description"
+        content="Calculate your SRMVEC internal marks accurately. key in your CAT-1, CAT-2, and assignment marks to get your total internal score out of 40." />
+    <meta property="twitter:image" content="https://kavinkumarm30.github.io/internal-mark/Srm_vec_logo.jpg" />
+
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* Responsive mobile layout for CAT-1 and CAT-2 stacking vertically */
+        @media (max-width: 600px) {
+            .main-content>div[style*="display: flex"] {
+                flex-direction: column !important;
+            }
+        }
+    </style>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "SRMVEC Internal Mark Calculator",
+        "url": "https://kavinkumarm30.github.io/internal-mark/",
+        "applicationCategory": "EducationalApplication",
+        "genre": "Education",
+        "description": "Accurate CAT and assignment mark calculator for SRMVEC students.",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript",
+        "author": {
+            "@type": "Person",
+            "name": "Kavin"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "INR"
+        }
+    }
+    </script>
+</head>
+
+<body>
+    <!-- Role Selection Screen -->
+    <div class="role-selection" id="roleSelection">
+        <div class="role-card">
+            <h1>📊 Internal Mark Calculator</h1>
+            <p>Please select your role to continue</p>
+            <div class="role-buttons">
+                <button class="role-btn student" onclick="selectRole('student')">👨‍🎓 Student</button>
+                <button class="role-btn staff" onclick="selectRole('staff')">👨‍🏫 Staff</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div class="main-app" id="mainApp">
+        <div class="container">
+            <header>
+                <button class="change-role-btn" onclick="changeRole()">← Change Role</button>
+                <h1>📊 Internal Mark Calculator</h1>
+                <p>Precise CAT and Assignment Mark Calculation System</p>
+                <div class="role-badge" id="roleBadge"></div>
+            </header>
+
+            <div class="main-content" style="display: flex; flex-direction: column; gap: 20px;">
+                <div style="display: flex; gap: 40px; justify-content: space-between;">
+                    <div class="left-column" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+                        <div class="cat-group">
+                            <h3>CAT-1 Components</h3>
+                            <div class="input-group">
+                                <label for="c1">CAT-1 Exam Mark (C1) <span class="tooltip"
+                                        title="Enter marks from 0 to 100">ⓘ</span></label>
+                                <div class="input-wrapper">
+                                    <input type="number" id="c1" placeholder="0-100" min="0" max="100" step="0.01" />
+                                    <div class="error-message" id="c1-error">Value must be between 0 and 100</div>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label for="a1">CAT-1 Assignment Mark (A1) <span class="tooltip"
+                                        title="Enter marks from 0 to 40">ⓘ</span></label>
+                                <div class="input-wrapper">
+                                    <input type="number" id="a1" placeholder="0-40" min="0" max="40" step="0.01" />
+                                    <div class="error-message" id="a1-error">Value must be between 0 and 40</div>
+                                </div>
+                            </div>
+                            <div class="calculate-btn-group">
+                                <button class="btn-success" onclick="calculateCAT1()">Calculate CAT-1</button>
+                            </div>
+                        </div>
+                        <div class="result-box" id="cat1Result">
+                            <h3>CAT-1 Score (out of 20)</h3>
+                            <div class="result-placeholder" id="cat1Placeholder">Click "Calculate CAT-1" to see results
+                            </div>
+                            <div id="cat1Content" class="hidden">
+                                <div class="breakdown" id="cat1Breakdown"></div>
+                                <div class="final-score" id="cat1Score"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right-column" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+                        <div class="cat-group">
+                            <h3>CAT-2 Components</h3>
+                            <div class="input-group">
+                                <label for="c2">CAT-2 Exam Mark (C2) <span class="tooltip"
+                                        title="Enter marks from 0 to 100">ⓘ</span></label>
+                                <div class="input-wrapper">
+                                    <input type="number" id="c2" placeholder="0-100" min="0" max="100" step="0.01" />
+                                    <div class="error-message" id="c2-error">Value must be between 0 and 100</div>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label for="a2">CAT-2 Assignment Mark (A2) <span class="tooltip"
+                                        title="Enter marks from 0 to 40">ⓘ</span></label>
+                                <div class="input-wrapper">
+                                    <input type="number" id="a2" placeholder="0-40" min="0" max="40" step="0.01" />
+                                    <div class="error-message" id="a2-error">Value must be between 0 and 40</div>
+                                </div>
+                            </div>
+                            <div class="calculate-btn-group">
+                                <button class="btn-success" onclick="calculateCAT2()">Calculate CAT-2</button>
+                            </div>
+                        </div>
+                        <div class="result-box" id="cat2Result">
+                            <h3>CAT-2 Score (out of 20)</h3>
+                            <div class="result-placeholder" id="cat2Placeholder">Click "Calculate CAT-2" to see results
+                            </div>
+                            <div id="cat2Content" class="hidden">
+                                <div class="breakdown" id="cat2Breakdown"></div>
+                                <div class="final-score" id="cat2Score"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="result-box" id="totalResult" style="max-width: 100%;">
+                    <h3>Total Internal Score (out of 40)</h3>
+                    <div class="calculate-btn-group">
+                        <button class="btn-success" onclick="calculateTotal()">Calculate Total</button>
+                    </div>
+                    <div class="result-placeholder" id="totalPlaceholder">Click "Calculate Total" to see results</div>
+                    <div id="totalContent" class="hidden">
+                        <div class="breakdown" id="totalBreakdown"></div>
+                        <div class="final-score" id="totalScore"></div>
+                    </div>
+                </div>
+
+                <div class="section staff-only" id="saveStudentSection">
+                    <h2>Save Student Record</h2>
+                    <div class="input-group">
+                        <label for="studentName">Student Name</label>
+                        <input type="text" id="studentName" placeholder="Enter student name" />
+                    </div>
+                    <div class="controls">
+                        <button class="btn-primary" onclick="saveStudent()">Save Student</button>
+                    </div>
+                </div>
+
+                <div class="section staff-only" id="importExportSection">
+                    <h2>Import/Export</h2>
+                    <div class="controls">
+                        <button class="btn-primary" onclick="exportCSV()">Export CSV</button>
+                        <button class="btn-secondary" onclick="document.getElementById('csvFile').click()">Import
+                            CSV</button>
+                        <input type="file" id="csvFile" accept=".csv" style="display:none"
+                            onchange="importCSV(event)" />
+                    </div>
+                    <div id="csvError"></div>
+                </div>
+            </div>
+
+            <div class="readme">
+                <h2>📖 Usage Instructions</h2>
+                <p><strong>Purpose:</strong> This calculator computes internal marks based on CAT exams and assignments
+                    using the exact formula specified below.</p>
+                <h3>Formula Explanation:</h3>
+                <div class="formula-box">
+                    CAT1 = (((C1 / 100) × 60) + A1) / 100 × 20<br />
+                    CAT2 = (((C2 / 100) × 60) + A2) / 100 × 20<br />TOTAL = CAT1 + CAT2
+                </div>
+                <p><strong>Where:</strong></p>
+                <ul>
+                    <li>C1, C2 = CAT exam marks (0-100)</li>
+                    <li>A1, A2 = Assignment marks (0-40)</li>
+                    <li>Each CAT score is out of 20 marks</li>
+                    <li>Total internal score is out of 40 marks</li>
+                </ul>
+                <h3>How to Use:</h3>
+                <ul>
+                    <li>Enter marks in the input fields (validates automatically)</li>
+                    <li>Click "Calculate CAT-1" to calculate CAT-1 score</li>
+                    <li>Click "Calculate CAT-2" to calculate CAT-2 score</li>
+                    <li>Click "Calculate Total" to calculate the combined total score</li>
+                    <li>Toggle "Show rounded integers" to switch between decimal and rounded display</li>
+                    <li class="staff-only">Save student records with their name to track multiple students (Staff only)
+                    </li>
+                    <li class="staff-only">Export all saved students to CSV for external use (Staff only)</li>
+                    <li class="staff-only">Import CSV files - format: Name,C1,A1,C2,A2 (Staff only)</li>
+                </ul>
+                <h3 class="staff-only">CSV Format (Staff only):</h3>
+                <div class="formula-box staff-only">
+                    Name,C1,A1,C2,A2<br />
+                    John Doe,80,32,70,30<br />
+                    Jane Smith,90,40,85,35
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // State management
+        let students = [];
+        let roundMode = false;
+        let cat1Calculated = false;
+        let cat2Calculated = false;
+        let currentRole = null;
+
+        /**
+         * Select role (Student or Staff)
+         */
+        function selectRole(role) {
+            currentRole = role;
+            localStorage.setItem('userRole', role);
+
+            // Hide role selection, show main app
+            document.getElementById('roleSelection').style.display = 'none';
+            document.getElementById('mainApp').style.display = 'block';
+
+            // Update role badge
+            document.getElementById('roleBadge').textContent = role === 'student' ? '👨‍🎓 Student' : '👨‍🏫 Staff';
+
+            // Show/hide staff-only sections
+            const staffOnlyElements = document.querySelectorAll('.staff-only');
+            staffOnlyElements.forEach(element => {
+                if (role === 'student') {
+                    element.style.display = 'none';
+                } else {
+                    element.style.display = 'block';
+                }
+            });
+
+            // Load students if staff
+            if (role === 'staff') {
+                loadStudents();
+            }
+        }
+
+        /**
+         * Change role - go back to selection screen
+         */
+        function changeRole() {
+            if (confirm('Are you sure you want to change your role? This will reset the current session.')) {
+                currentRole = null;
+                localStorage.removeItem('userRole');
+
+                // Reset inputs
+                document.getElementById('c1').value = '';
+                document.getElementById('a1').value = '';
+                document.getElementById('c2').value = '';
+                document.getElementById('a2').value = '';
+                document.getElementById('studentName').value = '';
+
+                // Reset result displays
+                document.getElementById('cat1Placeholder').classList.remove('hidden');
+                document.getElementById('cat1Content').classList.add('hidden');
+                document.getElementById('cat2Placeholder').classList.remove('hidden');
+                document.getElementById('cat2Content').classList.add('hidden');
+                document.getElementById('totalPlaceholder').classList.remove('hidden');
+                document.getElementById('totalContent').classList.add('hidden');
+
+                cat1Calculated = false;
+                cat2Calculated = false;
+
+                // Show role selection, hide main app
+                document.getElementById('roleSelection').style.display = 'flex';
+                document.getElementById('mainApp').style.display = 'none';
+            }
+        }
+
+        // Load students from localStorage on page load
+        function loadStudents() {
+            const saved = localStorage.getItem('students');
+            if (saved) {
+                students = JSON.parse(saved);
+                renderStudentsTable();
+            }
+        }
+
+        // Save students to localStorage
+        function saveStudents() {
+            localStorage.setItem('students', JSON.stringify(students));
+        }
+
+        /**
+         * Core calculation function implementing the exact formula:
+         * CAT = (((C / 100) * 60) + A) / 100 * 20
+         * 
+         * @param {number} examMark - CAT exam mark (0-100)
+         * @param {number} assignmentMark - Assignment mark (0-40)
+         * @returns {number} - CAT score out of 20
+         */
+        function calculateCAT(examMark, assignmentMark) {
+            // Formula: (((C / 100) * 60) + A) / 100 * 20
+            const exam60 = (examMark / 100) * 60;  // Convert exam to 60% weightage
+            const combined = exam60 + assignmentMark;  // Add assignment (out of 40)
+            const scaled = (combined / 100) * 20;  // Scale to 20 marks
+            return scaled;
+        }
+
+        /**
+         * Format number based on rounding mode
+         */
+        function formatNumber(num) {
+            if (roundMode) {
+                return Math.round(num).toString();
+            }
+            return num.toFixed(2);
+        }
+
+        /**
+         * Validate input value against min and max constraints
+         */
+        function validateInput(value, min, max, inputId) {
+            const errorElement = document.getElementById(`${inputId}-error`);
+            const inputElement = document.getElementById(inputId);
+
+            if (value === '' || value === null) {
+                errorElement.classList.remove('show');
+                inputElement.classList.remove('error');
+                return false; // Empty is not valid for calculation
+            }
+
+            const numValue = parseFloat(value);
+
+            if (isNaN(numValue) || numValue < min || numValue > max) {
+                errorElement.classList.add('show');
+                inputElement.classList.add('error');
+                return false;
+            }
+
+            errorElement.classList.remove('show');
+            inputElement.classList.remove('error');
+            return true;
+        }
+
+        /**
+         * Calculate CAT-1 score
+         */
+        function calculateCAT1() {
+            const c1 = document.getElementById('c1').value;
+            const a1 = document.getElementById('a1').value;
+
+            // Validate inputs
+            const c1Valid = validateInput(c1, 0, 100, 'c1');
+            const a1Valid = validateInput(a1, 0, 40, 'a1');
+
+            if (!c1Valid || !a1Valid) {
+                alert('Please enter valid values for C1 (0-100) and A1 (0-40)');
+                return;
+            }
+
+            const c1Num = parseFloat(c1);
+            const a1Num = parseFloat(a1);
+
+            // Calculate CAT-1
+            const exam1_60 = (c1Num / 100) * 60;
+            const combined1 = exam1_60 + a1Num;
+            const cat1 = calculateCAT(c1Num, a1Num);
+
+            // Update CAT-1 display
+            document.getElementById('cat1Placeholder').classList.add('hidden');
+            document.getElementById('cat1Content').classList.remove('hidden');
+
+            document.getElementById('cat1Breakdown').innerHTML = `
+                <div class="breakdown-line">Exam 60%: (${formatNumber(c1Num)}/100) × 60 = ${formatNumber(exam1_60)}</div>
+                <div class="breakdown-line">Plus Assignment: ${formatNumber(exam1_60)} + ${formatNumber(a1Num)} = ${formatNumber(combined1)}</div>
+                <div class="breakdown-line">Scaled to 20: (${formatNumber(combined1)}/100) × 20 = ${formatNumber(cat1)}</div>
+            `;
+            document.getElementById('cat1Score').textContent = formatNumber(cat1);
+
+            // Add highlight animation
+            document.getElementById('cat1Result').classList.add('highlight');
+            setTimeout(() => {
+                document.getElementById('cat1Result').classList.remove('highlight');
+            }, 500);
+
+            cat1Calculated = true;
+        }
+
+        /**
+         * Calculate CAT-2 score
+         */
+        function calculateCAT2() {
+            const c2 = document.getElementById('c2').value;
+            const a2 = document.getElementById('a2').value;
+
+            // Validate inputs
+            const c2Valid = validateInput(c2, 0, 100, 'c2');
+            const a2Valid = validateInput(a2, 0, 40, 'a2');
+
+            if (!c2Valid || !a2Valid) {
+                alert('Please enter valid values for C2 (0-100) and A2 (0-40)');
+                return;
+            }
+
+            const c2Num = parseFloat(c2);
+            const a2Num = parseFloat(a2);
+
+            // Calculate CAT-2
+            const exam2_60 = (c2Num / 100) * 60;
+            const combined2 = exam2_60 + a2Num;
+            const cat2 = calculateCAT(c2Num, a2Num);
+
+            // Update CAT-2 display
+            document.getElementById('cat2Placeholder').classList.add('hidden');
+            document.getElementById('cat2Content').classList.remove('hidden');
+
+            document.getElementById('cat2Breakdown').innerHTML = `
+                <div class="breakdown-line">Exam 60%: (${formatNumber(c2Num)}/100) × 60 = ${formatNumber(exam2_60)}</div>
+                <div class="breakdown-line">Plus Assignment: ${formatNumber(exam2_60)} + ${formatNumber(a2Num)} = ${formatNumber(combined2)}</div>
+                <div class="breakdown-line">Scaled to 20: (${formatNumber(combined2)}/100) × 20 = ${formatNumber(cat2)}</div>
+            `;
+            document.getElementById('cat2Score').textContent = formatNumber(cat2);
+
+            // Add highlight animation
+            document.getElementById('cat2Result').classList.add('highlight');
+            setTimeout(() => {
+                document.getElementById('cat2Result').classList.remove('highlight');
+            }, 500);
+
+            cat2Calculated = true;
+        }
+
+        /**
+         * Calculate total score
+         */
+        function calculateTotal() {
+            const c1 = document.getElementById('c1').value;
+            const a1 = document.getElementById('a1').value;
+            const c2 = document.getElementById('c2').value;
+            const a2 = document.getElementById('a2').value;
+
+            // Validate all inputs
+            const c1Valid = validateInput(c1, 0, 100, 'c1');
+            const a1Valid = validateInput(a1, 0, 40, 'a1');
+            const c2Valid = validateInput(c2, 0, 100, 'c2');
+            const a2Valid = validateInput(a2, 0, 40, 'a2');
+
+            if (!c1Valid || !a1Valid || !c2Valid || !a2Valid) {
+                alert('Please enter valid values for all fields:\nC1, C2 (0-100) and A1, A2 (0-40)');
+                return;
+            }
+
+            const c1Num = parseFloat(c1);
+            const a1Num = parseFloat(a1);
+            const c2Num = parseFloat(c2);
+            const a2Num = parseFloat(a2);
+
+            // Calculate both CATs
+            const cat1 = calculateCAT(c1Num, a1Num);
+            const cat2 = calculateCAT(c2Num, a2Num);
+            const total = cat1 + cat2;
+
+            // Update CAT-1 display
+            const exam1_60 = (c1Num / 100) * 60;
+            const combined1 = exam1_60 + a1Num;
+
+            document.getElementById('cat1Placeholder').classList.add('hidden');
+            document.getElementById('cat1Content').classList.remove('hidden');
+            document.getElementById('cat1Breakdown').innerHTML = `
+                <div class="breakdown-line">Exam 60%: (${formatNumber(c1Num)}/100) × 60 = ${formatNumber(exam1_60)}</div>
+                <div class="breakdown-line">Plus Assignment: ${formatNumber(exam1_60)} + ${formatNumber(a1Num)} = ${formatNumber(combined1)}</div>
+                <div class="breakdown-line">Scaled to 20: (${formatNumber(combined1)}/100) × 20 = ${formatNumber(cat1)}</div>
+            `;
+            document.getElementById('cat1Score').textContent = formatNumber(cat1);
+
+            // Update CAT-2 display
+            const exam2_60 = (c2Num / 100) * 60;
+            const combined2 = exam2_60 + a2Num;
+
+            document.getElementById('cat2Placeholder').classList.add('hidden');
+            document.getElementById('cat2Content').classList.remove('hidden');
+            document.getElementById('cat2Breakdown').innerHTML = `
+                <div class="breakdown-line">Exam 60%: (${formatNumber(c2Num)}/100) × 60 = ${formatNumber(exam2_60)}</div>
+                <div class="breakdown-line">Plus Assignment: ${formatNumber(exam2_60)} + ${formatNumber(a2Num)} = ${formatNumber(combined2)}</div>
+                <div class="breakdown-line">Scaled to 20: (${formatNumber(combined2)}/100) × 20 = ${formatNumber(cat2)}</div>
+            `;
+            document.getElementById('cat2Score').textContent = formatNumber(cat2);
+
+            // Update Total display
+            document.getElementById('totalPlaceholder').classList.add('hidden');
+            document.getElementById('totalContent').classList.remove('hidden');
+            document.getElementById('totalBreakdown').innerHTML = `
+                <div class="breakdown-line">CAT-1 + CAT-2 = ${formatNumber(cat1)} + ${formatNumber(cat2)}</div>
+            `;
+            document.getElementById('totalScore').textContent = formatNumber(total);
+
+            // Add highlight animation
+            document.getElementById('cat1Result').classList.add('highlight');
+            document.getElementById('cat2Result').classList.add('highlight');
+            document.getElementById('totalResult').classList.add('highlight');
+
+            setTimeout(() => {
+                document.getElementById('cat1Result').classList.remove('highlight');
+                document.getElementById('cat2Result').classList.remove('highlight');
+                document.getElementById('totalResult').classList.remove('highlight');
+            }, 500);
+
+            cat1Calculated = true;
+            cat2Calculated = true;
+        }
+
+        /**
+         * Reset all input fields and results
+         */
+        function resetInputs() {
+            if (confirm('Are you sure you want to reset all inputs and results?' + (currentRole === 'staff' ? ' This will not delete saved students.' : ''))) {
+                document.getElementById('c1').value = '';
+                document.getElementById('a1').value = '';
+                document.getElementById('c2').value = '';
+                document.getElementById('a2').value = '';
+                if (currentRole === 'staff') {
+                    document.getElementById('studentName').value = '';
+                }
+
+                // Clear error states
+                ['c1', 'a1', 'c2', 'a2'].forEach(id => {
+                    document.getElementById(id).classList.remove('error');
+                    document.getElementById(`${id}-error`).classList.remove('show');
+                });
+
+                // Reset result displays
+                document.getElementById('cat1Placeholder').classList.remove('hidden');
+                document.getElementById('cat1Content').classList.add('hidden');
+                document.getElementById('cat2Placeholder').classList.remove('hidden');
+                document.getElementById('cat2Content').classList.add('hidden');
+                document.getElementById('totalPlaceholder').classList.remove('hidden');
+                document.getElementById('totalContent').classList.add('hidden');
+
+                cat1Calculated = false;
+                cat2Calculated = false;
+            }
+        }
+
+        /**
+         * Save current student to the list (Staff only)
+         */
+        function saveStudent() {
+            if (currentRole !== 'staff') return;
+
+            const name = document.getElementById('studentName').value.trim();
+            const c1 = document.getElementById('c1').value;
+            const a1 = document.getElementById('a1').value;
+            const c2 = document.getElementById('c2').value;
+            const a2 = document.getElementById('a2').value;
+
+            // Validate name
+            if (!name) {
+                alert('Please enter a student name.');
+                return;
+            }
+
+            // Check if any required field is empty
+            if (!c1 || !a1 || !c2 || !a2) {
+                alert('Please fill in all mark fields before saving.');
+                return;
+            }
+
+            // Validate all inputs are within range
+            const c1Valid = validateInput(c1, 0, 100, 'c1');
+            const a1Valid = validateInput(a1, 0, 40, 'a1');
+            const c2Valid = validateInput(c2, 0, 100, 'c2');
+            const a2Valid = validateInput(a2, 0, 40, 'a2');
+
+            if (!c1Valid || !a1Valid || !c2Valid || !a2Valid) {
+                alert('Please fix input errors before saving.');
+                return;
+            }
+
+            // Calculate scores
+            const c1Num = parseFloat(c1);
+            const a1Num = parseFloat(a1);
+            const c2Num = parseFloat(c2);
+            const a2Num = parseFloat(a2);
+
+            const cat1 = calculateCAT(c1Num, a1Num);
+            const cat2 = calculateCAT(c2Num, a2Num);
+            const total = cat1 + cat2;
+
+            // Add to students array
+            students.push({
+                name,
+                c1: c1Num,
+                a1: a1Num,
+                cat1: parseFloat(cat1.toFixed(2)),
+                c2: c2Num,
+                a2: a2Num,
+                cat2: parseFloat(cat2.toFixed(2)),
+                total: parseFloat(total.toFixed(2))
+            });
+
+            // Save to localStorage
+            saveStudents();
+
+            // Render table
+            renderStudentsTable();
+
+            // Clear student name
+            document.getElementById('studentName').value = '';
+
+            alert(`Student "${name}" saved successfully!`);
+        }
+
+        /**
+         * Render students table (Staff only)
+         */
+        function renderStudentsTable() {
+            if (currentRole !== 'staff') return;
+
+            const tableBody = document.getElementById('studentsTableBody');
+            const emptyState = document.getElementById('emptyState');
+            const table = document.getElementById('studentsTable');
+
+            if (students.length === 0) {
+                emptyState.classList.remove('hidden');
+                table.classList.add('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            table.classList.remove('hidden');
+
+            tableBody.innerHTML = students.map((student, index) => `
+                <tr>
+                    <td>${escapeHtml(student.name)}</td>
+                    <td>${formatNumber(student.c1)}</td>
+                    <td>${formatNumber(student.a1)}</td>
+                    <td>${formatNumber(student.cat1)}</td>
+                    <td>${formatNumber(student.c2)}</td>
+                    <td>${formatNumber(student.a2)}</td>
+                    <td>${formatNumber(student.cat2)}</td>
+                    <td><strong>${formatNumber(student.total)}</strong></td>
+                    <td><button class="delete-btn" onclick="deleteStudent(${index})">Delete</button></td>
+                </tr>
+            `).join('');
+        }
+
+        /**
+         * Escape HTML to prevent XSS
+         */
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        /**
+         * Delete a student from the list (Staff only)
+         */
+        function deleteStudent(index) {
+            if (currentRole !== 'staff') return;
+
+            if (confirm(`Are you sure you want to delete ${students[index].name}?`)) {
+                students.splice(index, 1);
+                saveStudents();
+                renderStudentsTable();
+            }
+        }
+
+        /**
+         * Clear all students (Staff only)
+         */
+        function clearAllStudents() {
+            if (currentRole !== 'staff') return;
+
+            if (students.length === 0) {
+                alert('No students to clear.');
+                return;
+            }
+
+            if (confirm(`Are you sure you want to delete all ${students.length} student(s)? This cannot be undone.`)) {
+                students = [];
+                saveStudents();
+                renderStudentsTable();
+            }
+        }
+
+        /**
+         * Export students to CSV (Staff only)
+         */
+        function exportCSV() {
+            if (currentRole !== 'staff') return;
+
+            if (students.length === 0) {
+                alert('No students to export.');
+                return;
+            }
+
+            // Create CSV content
+            let csv = 'Name,C1,A1,C2,A2,CAT1,CAT2,Total\n';
+            students.forEach(student => {
+                csv += `"${student.name.replace(/"/g, '""')}",${student.c1},${student.a1},${student.c2},${student.a2},${student.cat1},${student.cat2},${student.total}\n`;
+            });
+
+            // Create download link
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `internal_marks_${new Date().toISOString().split('T')[0]}.csv`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        /**
+         * Import students from CSV (Staff only)
+         */
+        function importCSV(event) {
+            if (currentRole !== 'staff') return;
+
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                try {
+                    const content = e.target.result;
+                    const lines = content.split('\n').filter(line => line.trim());
+
+                    // Skip header
+                    const dataLines = lines.slice(1);
+
+                    const errors = [];
+                    const newStudents = [];
+
+                    dataLines.forEach((line, index) => {
+                        const rowNum = index + 2; // +2 because we skipped header and arrays are 0-indexed
+
+                        // Parse CSV line (handle quoted fields)
+                        const regex = /,(?=(?:(?:[^"]*"){2})*[^"]*$)/;
+                        const fields = line.split(regex).map(field => {
+                            // Remove quotes and trim
+                            return field.replace(/^"(.*)"$/, '$1').replace(/""/g, '"').trim();
+                        });
+
+                        if (fields.length < 5) {
+                            errors.push(`Row ${rowNum}: Insufficient columns (expected at least 5: Name,C1,A1,C2,A2)`);
+                            return;
+                        }
+
+                        const [name, c1, a1, c2, a2] = fields;
+
+                        // Validate name
+                        if (!name) {
+                            errors.push(`Row ${rowNum}: Missing name`);
+                            return;
+                        }
+
+                        // Validate and parse numbers
+                        const c1Num = parseFloat(c1);
+                        const a1Num = parseFloat(a1);
+                        const c2Num = parseFloat(c2);
+                        const a2Num = parseFloat(a2);
+
+                        // Check for NaN
+                        if (isNaN(c1Num)) errors.push(`Row ${rowNum}: C1 is not a valid number`);
+                        if (isNaN(a1Num)) errors.push(`Row ${rowNum}: A1 is not a valid number`);
+                        if (isNaN(c2Num)) errors.push(`Row ${rowNum}: C2 is not a valid number`);
+                        if (isNaN(a2Num)) errors.push(`Row ${rowNum}: A2 is not a valid number`);
+
+                        // Check ranges
+                        if (c1Num < 0 || c1Num > 100) errors.push(`Row ${rowNum}: C1 (${c1Num}) out of range (0-100)`);
+                        if (a1Num < 0 || a1Num > 40) errors.push(`Row ${rowNum}: A1 (${a1Num}) out of range (0-40)`);
+                        if (c2Num < 0 || c2Num > 100) errors.push(`Row ${rowNum}: C2 (${c2Num}) out of range (0-100)`);
+                        if (a2Num < 0 || a2Num > 40) errors.push(`Row ${rowNum}: A2 (${a2Num}) out of range (0-40)`);
+
+                        if (errors.length > 0) return;
+
+                        // Calculate scores
+                        const cat1 = calculateCAT(c1Num, a1Num);
+                        const cat2 = calculateCAT(c2Num, a2Num);
+                        const total = cat1 + cat2;
+
+                        newStudents.push({
+                            name: name,
+                            c1: c1Num,
+                            a1: a1Num,
+                            cat1: parseFloat(cat1.toFixed(2)),
+                            c2: c2Num,
+                            a2: a2Num,
+                            cat2: parseFloat(cat2.toFixed(2)),
+                            total: parseFloat(total.toFixed(2))
+                        });
+                    });
+
+                    // Display errors if any
+                    const errorDiv = document.getElementById('csvError');
+                    if (errors.length > 0) {
+                        errorDiv.innerHTML = `
+                            <div class="csv-error">
+                                <strong>⚠️ Import Errors Found:</strong>
+                                <ul>
+                                    ${errors.map(err => `<li>${escapeHtml(err)}</li>`).join('')}
+                                </ul>
+                            </div>
+                        `;
+                        return;
+                    }
+
+                    errorDiv.innerHTML = '';
+
+                    // Add new students
+                    if (newStudents.length > 0) {
+                        students.push(...newStudents);
+                        saveStudents();
+                        renderStudentsTable();
+                        alert(`Successfully imported ${newStudents.length} student(s)!`);
+                    } else {
+                        alert('No valid student records found in CSV.');
+                    }
+                } catch (error) {
+                    alert('Error parsing CSV file: ' + error.message);
+                }
+
+                // Reset file input
+                event.target.value = '';
+            };
+
+            reader.readAsText(file);
+        }
+
+        /**
+         * Toggle rounding mode
+         */
+        function toggleRounding() {
+            roundMode = document.getElementById('roundToggle').checked;
+
+            // Re-render results if they exist
+            if (cat1Calculated || cat2Calculated) {
+                // Get current values
+                const c1 = parseFloat(document.getElementById('c1').value) || 0;
+                const a1 = parseFloat(document.getElementById('a1').value) || 0;
+                const c2 = parseFloat(document.getElementById('c2').value) || 0;
+                const a2 = parseFloat(document.getElementById('a2').value) || 0;
+
+                if (cat1Calculated && !document.getElementById('cat1Content').classList.contains('hidden')) {
+                    const exam1_60 = (c1 / 100) * 60;
+                    const combined1 = exam1_60 + a1;
+                    const cat1 = calculateCAT(c1, a1);
+                    document.getElementById('cat1Breakdown').innerHTML = `
+                        <div class="breakdown-line">Exam 60%: (${formatNumber(c1)}/100) × 60 = ${formatNumber(exam1_60)}</div>
+                        <div class="breakdown-line">Plus Assignment: ${formatNumber(exam1_60)} + ${formatNumber(a1)} = ${formatNumber(combined1)}</div>
+                        <div class="breakdown-line">Scaled to 20: (${formatNumber(combined1)}/100) × 20 = ${formatNumber(cat1)}</div>
+                    `;
+                    document.getElementById('cat1Score').textContent = formatNumber(cat1);
+                }
+
+                if (cat2Calculated && !document.getElementById('cat2Content').classList.contains('hidden')) {
+                    const exam2_60 = (c2 / 100) * 60;
+                    const combined2 = exam2_60 + a2;
+                    const cat2 = calculateCAT(c2, a2);
+                    document.getElementById('cat2Breakdown').innerHTML = `
+                        <div class="breakdown-line">Exam 60%: (${formatNumber(c2)}/100) × 60 = ${formatNumber(exam2_60)}</div>
+                        <div class="breakdown-line">Plus Assignment: ${formatNumber(exam2_60)} + ${formatNumber(a2)} = ${formatNumber(combined2)}</div>
+                        <div class="breakdown-line">Scaled to 20: (${formatNumber(combined2)}/100) × 20 = ${formatNumber(cat2)}</div>
+                    `;
+                    document.getElementById('cat2Score').textContent = formatNumber(cat2);
+                }
+
+                if (!document.getElementById('totalContent').classList.contains('hidden')) {
+                    const cat1 = calculateCAT(c1, a1);
+                    const cat2 = calculateCAT(c2, a2);
+                    const total = cat1 + cat2;
+                    document.getElementById('totalBreakdown').innerHTML = `
+                        <div class="breakdown-line">CAT-1 + CAT-2 = ${formatNumber(cat1)} + ${formatNumber(cat2)}</div>
+                    `;
+                    document.getElementById('totalScore').textContent = formatNumber(total);
+                }
+            }
+
+            // Re-render students table if staff
+            if (currentRole === 'staff') {
+                renderStudentsTable();
+            }
+        }
+
+        // Initialize on page load - check if role was previously selected
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedRole = localStorage.getItem('userRole');
+            if (savedRole === 'student' || savedRole === 'staff') {
+                selectRole(savedRole);
+            }
+        });
+    </script>
+    <footer style="text-align: center; padding: 15px 0; margin-top: 30px; font-size: 14px; color: #222;">
+        Developed with ❤ by<br />
+        Kavin<br /><br />
+        B.E. CSE Academic Project 2025
+    </footer>
+</body>
+
+</html>

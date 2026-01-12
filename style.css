@@ -1,0 +1,526 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #2d3748;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+/* Role Selection Screen */
+.role-selection {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.role-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    padding: 50px;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+}
+
+.role-card h1 {
+    color: #2d3748;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.role-card p {
+    color: #4a5568;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+}
+
+.role-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.role-btn {
+    padding: 20px 40px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 200px;
+}
+
+.role-btn.student {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.role-btn.student:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+.role-btn.staff {
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+    color: white;
+}
+
+.role-btn.staff:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(72, 187, 120, 0.4);
+}
+
+/* Main App (hidden initially) */
+.main-app {
+    display: none;
+}
+
+header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px;
+    text-align: center;
+    position: relative;
+}
+
+header h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+header p {
+    opacity: 0.9;
+    font-size: 0.95rem;
+}
+
+.role-badge {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.change-role-btn {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.change-role-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Updated to vertical stacking */
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 30px;
+}
+
+.left-column, .right-column {
+    display: block;
+}
+
+.section {
+    background: #f7fafc;
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 20px;
+}
+
+.section h2 {
+    color: #2d3748;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    border-bottom: 2px solid #667eea;
+    padding-bottom: 10px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #4a5568;
+    font-size: 0.95rem;
+}
+
+.tooltip {
+    display: inline-block;
+    margin-left: 5px;
+    color: #667eea;
+    cursor: help;
+    font-size: 0.85rem;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+input[type="number"], input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #cbd5e0;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input[type="number"]:focus, input[type="text"]:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+input.error {
+    border-color: #f56565;
+}
+
+.error-message {
+    color: #f56565;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    display: none;
+}
+
+.error-message.show {
+    display: block;
+}
+
+.cat-group {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 4px solid #667eea;
+}
+
+.cat-group h3 {
+    color: #667eea;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.result-box {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 2px solid #e2e8f0;
+    transition: all 0.3s ease;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+}
+
+.result-box.highlight {
+    animation: pulse 0.5s ease;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+.result-box h3 {
+    color: #2d3748;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.result-box.empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #a0aec0;
+    font-style: italic;
+}
+
+.breakdown {
+    font-family: 'Courier New', monospace;
+    background: #f7fafc;
+    padding: 15px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: #4a5568;
+    margin-bottom: 10px;
+}
+
+.breakdown-line {
+    margin: 5px 0;
+}
+
+.final-score {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #667eea;
+    text-align: center;
+    padding: 15px;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+    border-radius: 8px;
+    margin-top: auto;
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    min-width: 120px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    background: #e2e8f0;
+    color: #2d3748;
+}
+
+.btn-secondary:hover {
+    background: #cbd5e0;
+}
+
+.btn-danger {
+    background: #f56565;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #e53e3e;
+}
+
+.btn-success {
+    background: #48bb78;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #38a169;
+}
+
+.toggle-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+}
+
+.toggle-group label {
+    font-weight: 600;
+    color: #4a5568;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.students-table {
+    width: 100%;
+    background: white;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+th {
+    background: #f7fafc;
+    font-weight: 600;
+    color: #2d3748;
+    position: sticky;
+    top: 0;
+}
+
+td {
+    color: #4a5568;
+}
+
+.delete-btn {
+    background: #f56565;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.delete-btn:hover {
+    background: #e53e3e;
+}
+
+.readme {
+    background: #f7fafc;
+    padding: 25px;
+    border-radius: 8px;
+    margin: 30px;
+    border: 1px solid #e2e8f0;
+}
+
+.readme h2 {
+    color: #2d3748;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.readme p, .readme ul {
+    margin-bottom: 15px;
+    line-height: 1.8;
+    color: #4a5568;
+}
+
+.readme ul {
+    padding-left: 20px;
+}
+
+.readme code {
+    background: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    color: #667eea;
+}
+
+.formula-box {
+    background: white;
+    padding: 15px;
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    margin: 10px 0;
+    border-left: 4px solid #667eea;
+}
+
+.csv-error {
+    background: #fff5f5;
+    border: 1px solid #feb2b2;
+    padding: 15px;
+    border-radius: 6px;
+    margin: 15px 0;
+    color: #c53030;
+}
+
+.csv-error ul {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: #a0aec0;
+}
+
+.hidden {
+    display: none;
+}
+
+.calculate-btn-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.result-placeholder {
+    text-align: center;
+    color: #a0aec0;
+    padding: 40px 20px;
+    font-style: italic;
+}
+
+/* Responsive adjustments: no longer needed grid adjustment since layout is vertical */
+
+@media (max-width: 968px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .role-badge, .change-role-btn {
+        position: static;
+        display: block;
+        margin: 10px auto;
+    }
+
+    .controls {
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    .role-btn {
+        min-width: 150px;
+    }
+}
